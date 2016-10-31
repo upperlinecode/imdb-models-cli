@@ -18,4 +18,10 @@ class Actor
     ALL_ACTORS
   end
 
+  def self.all_names
+    ALL_ACTORS.collect do |actor|
+      actor.name
+    end
+  end
+
 end

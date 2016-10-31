@@ -1,21 +1,35 @@
-require './actor'
-require './movie'
-require 'pry'
+class App
 
+  def initialize
+    show_menu
+  end
 
-deniro = Actor.new("Robert Deniro")
-foster = Actor.new("Jodie Foster")
-sandler = Actor.new("Adam Sandler")
-stiller = Actor.new("Ben Stiller")
+  def show_menu
+    puts "What would you like to do?"
+    puts "1. Show Movies"
+    puts "2. Show Actors"
+    selection = gets.chomp
+    selection == "1" ? show_movies : show_actors
+  end
 
-raging_bull = Movie.new("Raging Bull", "action")
-raging_bull.add_actor(deniro)
-contact = Movie.new("Contact", "sci-fi")
-contact.add_actor(foster)
-madison = Movie.new("Billy Madison", "comedy")
-madison.add_actor(sandler)
-parents = Movie.new("Meet the Parents", "comedy")
-parents.add_actor(stiller)
-parents.add_actor(deniro)
+  def show_movies
+    puts "---------"
+    puts "MOVIES:"
+    Movie.all_titles.each_with_index do |title, i|
+      puts "#{i + 1}. #{title}"
+    end
+    puts "---------"
+    show_menu
+  end
 
-binding.pry
+  def show_actors
+    puts "---------"
+    puts "ACTORS:"
+    Actor.all_names.each_with_index do |name, i|
+      puts "#{i}. #{name}"
+    end
+    puts "---------"
+    show_menu
+  end
+
+end
